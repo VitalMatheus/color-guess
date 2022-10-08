@@ -1,38 +1,71 @@
-.App {
-  text-align: center;
+* {
+  padding: 0;
+  margin: 0;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+  background: linear-gradient(rgb(253, 253, 253), rgba(231, 132, 3, 0.89));
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.main-page {
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
+  height: 100vh;
+  flex-direction: column;
+  overflow: hidden;
+  background-image: url(https://t3.ftcdn.net/jpg/04/52/07/54/360_F_452075464_qcFXNOsDafAtnezS5iAfPPxrusr3spwO.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  mix-blend-mode: multiply;
 }
 
-.App-link {
-  color: #61dafb;
+.container {
+  width: 370px;
+  height: 200px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.buttons {
+  padding: 20px;
+}
+
+span {
+  font-size: 54px;
+  background-color: white;
+}
+
+.wrong-answer {
+  color: red;
+  font-weight: 800;
+  animation-name: xablau;
+  animation-duration: 4s;
+  transition-timing-function: ease-in-out
+}
+
+@keyframes xablau {
+  0%{margin-right: 150vw}
+  100%{margin-right: -150vw }
+}
+
+.right-answer {
+  color: green;
+  font-weight: 800;
+  animation-name: xablete;
+  animation-duration: 4s;
+}
+
+@keyframes xablete {
+  0%{position: absolute; bottom: -10vh}
+  100%{position: absolute; bottom: 72vh }
+}
+
+.buttons-container {
+  display: flex;
+  margin-top: 20px;
+}
+
+button {
+  padding: 12px;
+  width: 160px;
+  background-color: rgb(231, 231, 39);
 }

@@ -1,23 +1,60 @@
-import logo from './logo.svg';
+import { useEffect, useState } from 'react';
 import './App.css';
 
 function App() {
+  const [color, setColor] = useState();
+  const [answer, setAnswer] = useState();
+  const [condition, setCondition] = useState('');
+  
+  const getRandomNumber = () => {
+    return Math.floor(Math.random() * 256)
+  }
+
+  const getRandomColor = () => {
+    return `RGB(${getRandomNumber()}, ${getRandomNumber()}, ${getRandomNumber()})`;
+  }
+
+  const sortAnswer = (rightAnswer) => {
+    const options = [rightAnswer, getRandomColor(), getRandomColor()];
+    setAnswer(options);
+  }
+  
+  const newGame = () => {
+    const rightAnswer = getRandomColor();
+    setColor(rightAnswer);
+    sortAnswer(rightAnswer);
+  }
+
+  const handleClick = ({ target }) => {
+    if (target.value === color) {
+      setCondition('Acertô mizeravi')
+      newGame()
+    } else {
+      setCondition('Errooooowwww')
+      newGame()
+    }
+  }
+
+  useEffect(() => {
+    newGame();
+  }, [])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <div className="main-page">
+      <span className={ condition === 'Errooooowwww' ? 'wrong-answer' : 'right-answer'}>{ condition }</span>
+      <div className="container" style={ { backgroundColor: color } }></div>
+      <div className="buttons-container">
+      {answer?.sort().map((each) => (
+        <button
+          type="button"
+          key={ each }
+          value={ each }
+          onClick= { (e) => handleClick(e) }
         >
-          Learn React
-        </a>
-      </header>
+          { each }
+        </button>
+      )) }
+      </div>
     </div>
   );
 }
